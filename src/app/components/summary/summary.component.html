@@ -1,0 +1,143 @@
+<img
+  width="200"
+  (load)="imgLoaded()"
+  (error)="imgError()"
+  [src]="img"
+  *ngIf="img; elseImg"
+/>
+<ng-template #elseImg>
+  <img [src]="imgDefault" />
+</ng-template>
+
+<h3>{{ counter }}</h3>
+
+<!--
+<form (ngSubmit)="onRegister()" #myForm="ngForm">
+  <h2>Ingresa tus datos</h2>
+  <div class="input-group">
+    <label for="">Nombre</label>
+    <input type="text" id="name" name="name" [(ngModel)]="register.name" required #msgValid="ngModel">
+    <p class="msg-error" [class.invalid]="msgValid.invalid">El campo es requerido</p>
+  </div>
+  <div class="input-group">
+    <label for="">Email</label>
+    <input type="email" id="email" name="email" [(ngModel)]="register.email" required #msgValid2="ngModel">
+    <p class="msg-error" [class.invalid]="msgValid2.invalid">El campo es requerido</p>
+  </div>
+  <div class="input-group">
+    <label for="">Password</label>
+    <input type="password" id="password" name="password" [(ngModel)]="register.password" required #msgValid3="ngModel">
+    <p class="msg-error" [class.invalid]="msgValid3.invalid">El campo es requerido</p>
+  </div>
+  <button [disabled]="myForm.invalid" type="submit">Registrar</button>
+  <button type="button">Cancelar</button>
+</form>
+
+<h1>ngClass and ngStyle</h1>
+<input type="text" required #nameInput4="ngModel" [(ngModel)]="person.name">
+<hr class="line-error"
+[ngClass]="{
+  'valid': nameInput4.valid,
+  'invalid': nameInput4.invalid
+}">
+
+<div class="styles">
+  <div>
+    <input type="number" [(ngModel)]="box.width">
+    <input type="number" [(ngModel)]="box.height">
+    <input type="color" [(ngModel)]="box.background">
+  </div>
+  <div>
+    <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      'background-color': box.background,
+      'display': 'block'
+    }"></div>
+  </div>
+</div>
+
+
+<h1>Class and Style</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name" />
+<p class="msg-error" [class.invalid]="nameInput2.invalid">
+  El campo es requerido
+</p>
+
+<label>Nombre</label>
+<input type="text" required #nameInput3="ngModel" [(ngModel)]="person.name"/>
+<p [style.font-style]="nameInput3.invalid ? 'italic' : 'normal'">Lorem ipsum dolorum</p>
+
+<!-- Tamaños
+<div class="styles">
+  <div>
+    <input type="text" [(ngModel)]="widthImg">
+  </div>
+  <div>
+    <img [src]="person.avatar" alt="image" [style.width.px]="widthImg">
+  </div>
+</div>
+
+<h1>*ngFor Objcts</h1>
+<div class="products--grid">
+  <div *ngFor="let product of products">
+    <img [src]="product.image" alt="image">
+    <h2>{{product.price}}</h2>
+    <p>{{product.name}}</p>
+  </div>
+</div>
+
+<h1>*ngIf</h1>
+<p *ngIf="person.name == 'Jessica'">Hi guys, i'm Jessica</p>
+<p *ngIf="person.name == 'Joel' && person.age >= 18; else bloqueElse">Hi guys, i'm Joel</p>
+<ng-template #bloqueElse>
+  I dont know who you are :)
+</ng-template>
+<hr>
+
+<h1>*ngFor</h1>
+<input type="text" required [(ngModel)]="newEmoji">
+<button (click)="addEmoji()">Add emoji</button>
+
+<ul>
+  <li *ngIf="emojis.length === 0">No hay emojis :(</li>
+  <li *ngFor="let emoji of emojis; index as i">
+    {{i}} - {{emoji}}
+    <button (click)="removeEmoji(i)">Remove emoji</button>
+  </li>
+</ul>
+<hr>
+
+<h1>Event Binding</h1>
+<div class="box" (scroll)="onScroll($event)">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero ullam est iste nesciunt facere nam hic repellat amet. Quis ratione sint, corrupti hic odio quod. Labore corporis libero vero tempora? Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, ipsum facere? Aperiam vero quibusdam nam illo. Quas ratione totam deleniti suscipit maiores? Odio ullam officia corrupti dolorem beatae, accusamus iusto.</p>
+</div>
+<hr>
+
+<h1>Data binding con ngModel.</h1>
+<h2>NOMBRE: {{person.name}}!</h2>
+<input type="text" required #nameInput ="ngModel" [(ngModel)]="person.name">
+<p>Valid: {{nameInput.valid}}</p>
+
+<h2>EDAD: {{person.age}}!</h2>
+<input type="number" max="18" min="10" required #ageInput ="ngModel" [(ngModel)]="person.age">
+<p>Valid: {{ageInput.valid}}</p>
+<hr>
+
+<button [disabled]="btnState">Enviar</button>
+<button (click)="toggleBtn()">Change state</button>
+
+<button [disabled]="btnState">send</button>
+
+<input type="text" [value]="Inpval" (keyup)="changeName($event)">
+
+<progress max="100" [value]="person.age"></progress>
+
+<img [src]="person.avatar" alt="Img">
+
+<button (click)="increaseAge()">Age ++</button>
+<button (click)="decreaseAge()">Age --</button>
+
+<hr>
+
+-->

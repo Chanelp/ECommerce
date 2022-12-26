@@ -1,0 +1,109 @@
+html, body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  width: 84vw;
+  min-height: 80vh;
+  margin: 5rem auto;
+  align-items: center;
+  background-color: #ecd7ed;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+h1 {
+  margin: 20px;
+  font-size: 30px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-decoration: underline;
+  text-align: center;
+  word-spacing: 10px;
+}
+
+h2 {
+  font-size: 16px;
+  font-family: 'Trebuchet MS';
+  text-align: left;
+  margin: 1rem;
+}
+
+.ctn-Add{
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.ctn-task {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+input{
+  width: 200px;
+  height: 26px;
+  margin: 0 20px;
+  padding: 3px 10px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  color: white;
+  background-color: rgb(54, 54, 54);
+}
+
+input:focus {
+  border: 2px solid #e31779;
+  transition-duration: 1s;
+}
+
+button {
+  width: 88px;
+  height: 30px;
+  margin-right: 20px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-weight: bolder;
+  color: #e31779;
+  background-color: #f5efe9;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #dcffcd;
+  transition-duration: 2s;
+}
+
+.red {
+  text-decoration: line-through;
+  color: red;
+}
+
+.notasks{
+  font-size: 30px;
+  font-family: 'Trebuchet MS';
+  font-weight: bolder;
+  text-align: center;
+  color: black;
+}
+
+footer {
+  width: 100%;
+  height: 30px;
+  padding-top: 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  color: white;
+  background-color: palevioletred;
+}

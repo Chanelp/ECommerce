@@ -1,0 +1,19 @@
+<div class="container">
+  <h1> Cosas por hacer🎯</h1>
+  <div class="ctn-Add">
+    <input type="text" required [(ngModel)]="newTask" />
+    <button (click)="agregar()">Agregar</button>
+  </div>
+
+  <div *ngIf="todo.length === 0" class="notasks">No hay tareas 🎉</div>
+
+  <div class="ctn-task" *ngFor="let task of todo; index as i">
+    <h2 id="id{{ i }}">Tarea #{{ i }} - {{ task }}</h2>
+    <button (click)="eliminar(i)">Eliminar</button>
+    <button (click)="terminada(i)">Terminada</button>
+  </div>
+</div>
+
+<footer>
+  Made with 💗 by @chanelp
+</footer>
