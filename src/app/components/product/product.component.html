@@ -1,4 +1,5 @@
 <app-summary width="200" [img]="product.image"></app-summary>
-<h2>{{ product.price }}</h2>
-<p>{{ product.name }}</p>
+<h2>{{ product.price | currency:'EUR' }}</h2>
+<p>{{ product.title | replaceVowels }}</p>
+<p appHighlight>{{ product.description }}</p>
 <button (click)="onAddToCart()">Add</button>

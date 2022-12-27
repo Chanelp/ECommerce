@@ -4,6 +4,15 @@
 <p>
   Total: ${{ total }}
 </p>
+<p>
+  Fecha hoy: {{ today | date:'fullDate'}}
+</p>
+<p>
+  Otra fecha: {{ fecha2 | timeAgo}}
+</p>
+<p>
+  {{ 'hOlA cOmO EstAiS' | uppercase }}
+</p>
 <div class="products--grid">
 <app-product [product]="product" *ngFor="let product of products" (addedProduct)="onAddToShoppingCart($event)"></app-product>
 </div>

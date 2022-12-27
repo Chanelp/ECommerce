@@ -37,6 +37,7 @@ form {
     border: none;
     border-radius: 10px;
     background-color: rgb(233, 240, 252);
+    cursor: pointer;
   }
 
   input:focus{
@@ -53,7 +54,7 @@ button {
   border-radius: 20px;
   font-weight: bolder;
   cursor: pointer;
-
+  transition: all ease-out .5s;
 }
 
 button:hover {

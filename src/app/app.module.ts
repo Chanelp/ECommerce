@@ -12,6 +12,11 @@ import { TodoComponent } from './components/todo/todo.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { ReplaceVowelsPipe } from './pipes/replace-vowels.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
+import { ImageErrorDirective } from './directives/image-error.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { NavComponent } from './components/nav/nav.component';
     TodoComponent,
     ProductComponent,
     ProductsListComponent,
-    NavComponent
+    NavComponent,
+    ReversePipe,
+    TimeAgoPipe,
+    ReplaceVowelsPipe,
+    HighlightDirective,
+    ImageErrorDirective
   ],
   imports: [
     BrowserModule,
