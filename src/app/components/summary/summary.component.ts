@@ -22,8 +22,8 @@ export class SummaryComponent implements OnInit, OnChanges, OnDestroy {
   @Input() alt: string = '';
   @Output() loaded = new EventEmitter<string>();
 
-  counter: number = 0;
-  counterFn: number | undefined;
+  // counter: number = 0;
+  // counterFn: number | undefined;
 
   widthImg = 10;
   nombre = 'Lola';
@@ -146,15 +146,15 @@ export class SummaryComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    this.counterFn = window.setInterval(()=> {
-      this.counter += 1;
-      console.log('run counter');
-    }, 1000)
+    // this.counterFn = window.setInterval(()=> {
+    //   this.counter += 1;
+    //   console.log('run counter');
+    // }, 1000)
   }
 
   ngOnDestroy() {
     console.log("ngOnDestroy");
-    window.clearInterval(this.counterFn);
+    //window.clearInterval(this.counterFn);
   }
 
 }

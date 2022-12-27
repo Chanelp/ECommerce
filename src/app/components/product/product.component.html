@@ -1,3 +1,4 @@
-<img width="200" [src]="product.image" alt="" />
+<app-summary width="200" [img]="product.image"></app-summary>
 <h2>{{ product.price }}</h2>
 <p>{{ product.name }}</p>
+<button (click)="onAddToCart()">Add</button>

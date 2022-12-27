@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { TodoComponent } from './components/todo/todo.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductsListComponent } from './components/products-list/products-list.
     LoginComponent,
     TodoComponent,
     ProductComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
