@@ -2,6 +2,7 @@
 <div class="contentInfo">
   <h2>{{ product.price | currency : "EUR" }}</h2>
   <p>{{ product.title }}</p>
+  <p>Taxes: {{ product?.taxes | currency: "EUR"}}</p>
   <img (click)="onShowDetail()" src="https://cdn-icons-png.flaticon.com/512/14/14777.png" alt="">
   <button (click)="onAddToCart()"><img src="https://raw.githubusercontent.com/platzi/curso-frontend-developer-practico/4774124de4c723d46d6a22da4c93c03f7be9e7bd/icons/bt_add_to_cart.svg" alt=""></button>
 </div>

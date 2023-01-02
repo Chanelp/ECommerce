@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UpdateProductDTO, CreateProductDTO, Product } from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { switchMap } from 'rxjs';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products-list',
@@ -28,6 +31,7 @@ export class ProductsListComponent implements OnInit {
 
   limit: number = 10;
   offset: number = 0;
+  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   constructor( private storeServie: StoreService, private productsService: ProductsService )
   {
@@ -48,9 +52,29 @@ export class ProductsListComponent implements OnInit {
   }
 
   onShowDetail(id: number) {
+    this.statusDetail = 'loading';
+    this.toggleProductDetail();
     this.productsService.getProduct(id).subscribe((data) => {
-      this.toggleProductDetail();
       this.productChosen = data;
+      this.statusDetail = 'success'
+    }, errorMsg => {
+      this.statusDetail = 'error';
+      Swal.fire({
+        title: errorMsg,
+        text: errorMsg,
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      })
+    });
+  }
+
+  reasAndUpdate(id: number) {
+    this.productsService.getProduct(id)
+    .pipe(
+      switchMap((product) => this.productsService.update(product.id, {title: 'Change'})),
+    )
+    .subscribe(data => {
+      console.log(data);
     });
   }
 
