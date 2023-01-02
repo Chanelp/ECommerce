@@ -25,7 +25,10 @@ export class ProductsListComponent implements OnInit {
       typeImg: ''
     },
     images: []
-  }
+  };
+
+  limit: number = 10;
+  offset: number = 0;
 
   constructor(
     private storeServie: StoreService,
@@ -35,15 +38,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productsService.getAllProducts().subscribe({
-      next:(products) => {
-        this.products = products;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-      complete: () => {}
-    });
+    this.loadData();
   }
 
   onAddToShoppingCart(product: Product){
@@ -102,6 +97,14 @@ export class ProductsListComponent implements OnInit {
       this.products.splice(productIndex, 1);
       this.showProductDetail = false;
     });
+  }
+
+  loadData() {
+    this.productsService.getAllProducts(this.limit, this.offset)
+     .subscribe(data => {
+      this.products = [...this.products, ...data];
+      this.offset += this.limit;
+     })
   }
 
 }

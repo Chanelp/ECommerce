@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { CreateProductDTO, Product, UpdateProductDTO } from '../models/product.model';
 import { Observable } from 'rxjs';
 import { th } from 'date-fns/locale';
@@ -12,19 +12,21 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProducts(): Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.apiUrl}`);
+  getAllProducts(limit?: number, offset?: number): Observable<Product[]>{
+    let params = new HttpParams();
+
+    if (limit !== undefined && offset !== undefined) {
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+
+    return this.http.get<Product[]>(this.apiUrl, { params });
   }
 
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`)
   }
 
-  getproductsByPage(limit: number, offset: number){
-    return this.http.get<Product>(this.apiUrl, {
-      params: {limit, offset}
-    })
-  }
 
   create(dto: CreateProductDTO): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, dto);
