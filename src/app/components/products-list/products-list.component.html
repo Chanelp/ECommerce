@@ -1,4 +1,39 @@
-<p>
+<button (click)="createNewProduct()">Create product</button>
+<div class="products--grid">
+  <app-product
+    [product]="product"
+    *ngFor="let product of products"
+    (addedProduct)="onAddToShoppingCart($event)"
+    (showProduct)="onShowDetail($event)"
+  ></app-product>
+</div>
+
+<div class="product-detail" [class.active]="showProductDetail">
+  <div *ngIf="productChosen">
+    <button (click)="toggleProductDetail()">
+      <img
+        class="close"
+        src="https://github.com/platzi/curso-frontend-developer-practico/blob/main/icons/icon_close.png?raw=true"
+        alt=""
+      />
+    </button>
+    <!-- Codigo slides de swiper -->
+
+    <swiper [slidesPerView]="1">
+      <ng-template swiperSlide *ngFor="let img of productChosen.images">
+        <img [src]="img" alt="" />
+      </ng-template>
+    </swiper>
+
+    <h1>{{ productChosen.title }}</h1>
+    <p>{{ productChosen.description }}</p>
+    <button class="slideAdd" (click)="onAddToShoppingCart(productChosen)">Add to cart</button>
+    <button (click)="updateProduct()">Editar producto</button>
+    <button (click)="deleteProduct()">Eliminar producto</button>
+  </div>
+</div>
+
+<!-- <p>
   La cantidad - {{ myShoppingCart.length }}
 </p>
 <p>
@@ -11,8 +46,5 @@
   Otra fecha: {{ fecha2 | timeAgo}}
 </p>
 <p>
-  {{ 'hOlA cOmO EstAiS' | uppercase }}
-</p>
-<div class="products--grid">
-<app-product [product]="product" *ngFor="let product of products" (addedProduct)="onAddToShoppingCart($event)"></app-product>
-</div>
+  {{ 'yu tienda online' | uppercase }}
+</p> -->

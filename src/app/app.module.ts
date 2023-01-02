@@ -7,7 +7,7 @@ import { SummaryComponent } from './components/summary/summary.component';
 
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login/login.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { TodoComponent } from './components/todo/todo.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
@@ -17,6 +17,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { ReplaceVowelsPipe } from './pipes/replace-vowels.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { ImageErrorDirective } from './directives/image-error.directive';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -31,13 +32,14 @@ import { ImageErrorDirective } from './directives/image-error.directive';
     TimeAgoPipe,
     ReplaceVowelsPipe,
     HighlightDirective,
-    ImageErrorDirective
+    ImageErrorDirective,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

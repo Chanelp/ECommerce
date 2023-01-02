@@ -97,7 +97,15 @@ button:hover {
   transition: all linear .5s;
 }
 
+.ctn-img{
+  width: 150px;
+  margin: 0 auto;
+}
+
 img {
   margin: 20px 0;
   max-width: 100%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }

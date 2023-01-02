@@ -1,3 +1,33 @@
 p, h2 {
   margin: 0;
+  font-size: 1em;
 }
+
+p{
+  font-size: .8em;
+}
+
+.contentInfo{
+  width: 150px;
+  margin: 0 auto;
+  padding: 0 3em;
+}
+
+button {
+  margin: 6px 2.4em;
+  background-color: #acd9b2;
+  border: none;
+  border-radius: 20px;
+  font-weight: bolder;
+  cursor: pointer;
+  transition: all ease-out .5s;
+}
+
+img {
+  width: 34px;
+  cursor: pointer;
+}
+
+// button:hover {
+//   background-color: rgb(252, 176, 189);
+// }

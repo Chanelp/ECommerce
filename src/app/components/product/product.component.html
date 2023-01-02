@@ -1,5 +1,14 @@
-<app-summary width="200" [img]="product.image"></app-summary>
-<h2>{{ product.price | currency:'EUR' }}</h2>
-<p>{{ product.title | replaceVowels }}</p>
-<p appHighlight>{{ product.description }}</p>
-<button (click)="onAddToCart()">Add</button>
+<app-summary *ngIf="product.images.length > 0" [img]="product.images[0]" width="200"></app-summary>
+<div class="contentInfo">
+  <h2>{{ product.price | currency : "EUR" }}</h2>
+  <p>{{ product.title }}</p>
+  <img (click)="onShowDetail()" src="https://cdn-icons-png.flaticon.com/512/14/14777.png" alt="">
+  <button (click)="onAddToCart()"><img src="https://raw.githubusercontent.com/platzi/curso-frontend-developer-practico/4774124de4c723d46d6a22da4c93c03f7be9e7bd/icons/bt_add_to_cart.svg" alt=""></button>
+</div>
+
+<!--
+  <div class="contentInfo">
+  <h2>{{ product.price | currency:'EUR' }}</h2>
+  <p>{{ product.title | replaceVowels }}</p>
+  <p appHighlight>{{ product.description }}</p>
+-->
