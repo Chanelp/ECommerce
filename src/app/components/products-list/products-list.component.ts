@@ -9,11 +9,10 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent implements OnInit {
-
   myShoppingCart: Product[] = [];
   total: number = 0;
   products: Product[] = [];
-  showProductDetail:boolean = false;
+  showProductDetail: boolean = false;
   productChosen: Product = {
     id: 0,
     price: 0,
@@ -22,26 +21,24 @@ export class ProductsListComponent implements OnInit {
     category: {
       id: 0,
       name: '',
-      typeImg: ''
+      typeImg: '',
     },
-    images: []
+    images: [],
   };
 
   limit: number = 10;
   offset: number = 0;
 
-  constructor(
-    private storeServie: StoreService,
-    private productsService: ProductsService
-    ) {
-    this.myShoppingCart =  this.storeServie.getShoppingCart();
+  constructor( private storeServie: StoreService, private productsService: ProductsService )
+  {
+    this.myShoppingCart = this.storeServie.getShoppingCart();
   }
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  onAddToShoppingCart(product: Product){
+  onAddToShoppingCart(product: Product) {
     this.storeServie.addProduct(product);
     this.total = this.storeServie.getTotal();
   }
@@ -50,61 +47,61 @@ export class ProductsListComponent implements OnInit {
     this.showProductDetail = !this.showProductDetail;
   }
 
-  onShowDetail(id: number){
-    this.productsService.getProduct(id).subscribe(data => {
+  onShowDetail(id: number) {
+    this.productsService.getProduct(id).subscribe((data) => {
       this.toggleProductDetail();
       this.productChosen = data;
-    })
+    });
   }
 
-  createNewProduct(){
+  createNewProduct() {
     const product: CreateProductDTO = {
       title: 'Pink product',
       price: 400,
       images: ['https://placeimg.com/640/480/arch'],
       description: 'So cute ugh',
-      categoryId: 1
-    }
-    this.productsService.create(product)
-    .subscribe(data => {
+      categoryId: 1,
+    };
+    this.productsService.create(product).subscribe((data) => {
       this.products.unshift(data);
     });
   }
 
-  updateProduct(){
+  updateProduct() {
     const changes: UpdateProductDTO = {
       title: 'Nuevo titulo editado',
-      description: 'Actualizada la description'
-    }
+      description: 'Actualizada la description',
+    };
     const id = this.productChosen.id;
 
-    this.productsService.update(id, changes)
-    .subscribe(data => {
-      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
+    this.productsService.update(id, changes).subscribe((data) => {
+      const productIndex = this.products.findIndex(
+        (item) => item.id === this.productChosen.id
+      );
 
       this.products[productIndex] = data;
-
       this.productChosen = data;
     });
   }
 
-  deleteProduct(){
+  deleteProduct() {
     const id = this.productChosen.id;
 
-    this.productsService.delete(id)
-    .subscribe(() => {
-      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id)
+    this.productsService.delete(id).subscribe(() => {
+      const productIndex = this.products.findIndex(
+        (item) => item.id === this.productChosen.id
+      );
       this.products.splice(productIndex, 1);
       this.showProductDetail = false;
     });
   }
 
   loadData() {
-    this.productsService.getAllProducts(this.limit, this.offset)
-     .subscribe(data => {
-      this.products = [...this.products, ...data];
-      this.offset += this.limit;
-     })
+    this.productsService
+      .getAllProducts(this.limit, this.offset)
+      .subscribe((data) => {
+        this.products = [...this.products, ...data];
+        this.offset += this.limit;
+      });
   }
-
 }

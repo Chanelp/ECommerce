@@ -13,7 +13,7 @@ export class SummaryComponent implements OnInit, OnChanges, OnDestroy {
   @Input('img')
   set changeImg(newImg: string){
     this.img = newImg;
-    console.log('Change just img => ', this.img);
+    //console.log('Change just img => ', this.img);
     //code
   };
 
@@ -105,7 +105,6 @@ export class SummaryComponent implements OnInit, OnChanges, OnDestroy {
 
   onScroll(event: Event){
     const element = event.target as HTMLElement;
-    console.log(element.scrollTop);
   }
 
   changeName(event: Event){
@@ -123,7 +122,6 @@ export class SummaryComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onRegister(){
-    console.table(this.register);
     this.register.name = '';
     this.register.email = '';
     this.register.password = '';
@@ -134,15 +132,14 @@ export class SummaryComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   imgLoaded(){
-    console.log("Load hijo");
     this.loaded.emit(this.img);
   }
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges', 'changes => ', this.img);
-    console.log(changes); //Escucha cualquier cambio de todos los inputs
+    //console.log('ngOnChanges', 'changes => ', this.img);
+    //console.log(changes); //Escucha cualquier cambio de todos los inputs
   }
 
   ngOnInit() {
@@ -153,7 +150,7 @@ export class SummaryComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("ngOnDestroy");
+    //console.log("ngOnDestroy");
     //window.clearInterval(this.counterFn);
   }
 

@@ -16,15 +16,15 @@ export class AppComponent {
   }
 
   onLoaded(img: string){
-    console.log("Log padre", img);
+    //console.log("Log padre", img);
   }
 
   ngOnInit(){
     const calc = new Calculator();
     const rta = calc.multiply(3, 5);
-    console.log(rta === 15);
+    //console.log(rta === 15);
 
     const rta2 = calc.divide(15,0);
-    console.log(rta2 === null);
+    //console.log(rta2 === null);
   }
 }
