@@ -76,6 +76,12 @@ export class ProductsListComponent implements OnInit {
     .subscribe(data => {
       console.log(data);
     });
+
+    this.productsService.fetchReadandUpdate(id, {title: 'Nombre cambió'})
+    .subscribe(response => {
+      const read = response[0];
+      const update = response[1];
+    })
   }
 
   createNewProduct() {

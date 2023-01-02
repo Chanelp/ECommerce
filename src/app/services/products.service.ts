@@ -11,7 +11,7 @@ import {
   UpdateProductDTO,
 } from '../models/product.model';
 import { Observable } from 'rxjs';
-import { retry, catchError, throwError, map } from 'rxjs';
+import { retry, catchError, throwError, map, zip } from 'rxjs';
 import { environment } from './../../environments/environment';
 
 import { th } from 'date-fns/locale';
@@ -41,6 +41,13 @@ export class ProductsService {
           taxes: .19 * item.price
         }
       }))
+    );
+  }
+
+  fetchReadandUpdate(id: number, dto: UpdateProductDTO) {
+    return zip(
+      this.getProduct(id),
+      this.update(id, dto)
     );
   }
 
