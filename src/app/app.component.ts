@@ -16,7 +16,7 @@ export class AppComponent {
   }
 
   onLoaded(img: string){
-    //console.log("Log padre", img);
+    /*console.log("Log padre", img);*/
   }
 
   ngOnInit(){
