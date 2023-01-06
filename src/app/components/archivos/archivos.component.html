@@ -1,0 +1,7 @@
+<p>
+  <button (click)="onDownloadPdf()">Descargar PDF</button>
+</p>
+<p>
+  <input type="file" (change)="onUploadFile($event)">
+  <img *ngIf="imgRta" [src]="imgRta">
+</p>

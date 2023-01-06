@@ -14,15 +14,26 @@ import { Observable } from 'rxjs';
 import { retry, catchError, throwError, map, zip } from 'rxjs';
 import { environment } from './../../environments/environment';
 
+import { checkTime } from '../interceptors/time.interceptor';
+
 import { th } from 'date-fns/locale';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  private apiUrl = `${environment.API_URL}/api/products`;
+  private apiUrl = `${environment.API_URL}/api`;
 
   constructor(private http: HttpClient) {}
+
+  getByCategory(categoryId: number, limit?: number, offset?: number) {
+    let params = new HttpParams();
+    if(limit && offset != null) {
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+    return this.http.get<Product[]>(`${this.apiUrl}/categories/${categoryId}/products`, { params });
+  }
 
   getAllProducts(limit?: number, offset?: number): Observable<Product[]> {
     let params = new HttpParams();
@@ -32,7 +43,7 @@ export class ProductsService {
       params = params.set('offset', offset);
     }
 
-    return this.http.get<Product[]>(this.apiUrl, { params })
+    return this.http.get<Product[]>(`${this.apiUrl}/products`, { params, context: checkTime() })
     .pipe(
       retry(3),
       map(products => products.map(item => {
@@ -52,7 +63,7 @@ export class ProductsService {
   }
 
   getProduct(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`)
+    return this.http.get<Product>(`${this.apiUrl}/products/${id}`)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === HttpStatusCode.Conflict) {
@@ -70,14 +81,17 @@ export class ProductsService {
   }
 
   create(dto: CreateProductDTO): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, dto);
+    return this.http.post<Product>(`${this.apiUrl}/products`, dto);
   }
 
   update(id: number, dto: UpdateProductDTO): Observable<Product> {
-    return this.http.put<Product>(`${this.apiUrl}/${id}`, dto);
+    return this.http.put<Product>(`${this.apiUrl}/products/${id}`, dto);
   }
 
   delete(id: number) {
-    return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
+    return this.http.delete<boolean>(`${this.apiUrl}/products/${id}`);
   }
+
+
+
 }

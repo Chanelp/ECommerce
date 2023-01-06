@@ -1,5 +1,5 @@
 .products--grid {
-  margin: 6em auto;
+  margin: 2em auto;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -18,17 +18,21 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  transition: all ease-out .5s;
+  transition: all ease-out 0.5s;
   transform: translateX(100%);
+
+  h1 {
+    font-size: 1.2em;
+  }
 
   img {
     width: 100%;
-    height: 40vh;
+    height: 36vh;
     object-fit: cover;
     cursor: pointer;
   }
 
-  &.active{
+  &.active {
     transform: translateX(0);
   }
 }
@@ -38,31 +42,43 @@ button {
   background-color: transparent;
   border: none;
   .close {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
   }
 }
 
 .slideAdd {
   width: 90%;
-  padding: 1em .5em;
-  font-family: 'Quicksand';
+  padding: 1em 0.5em;
+  font-family: "Quicksand";
   font-weight: bold;
   border: 1px solid pink;
   border-radius: 10px;
   cursor: pointer;
-  transition: all linear .7s;
+  transition: all linear 0.7s;
 }
 
 .slideAdd:hover {
   background-color: pink;
 }
 
+.extras {
+  margin: 1em;
+  padding: 10px;
+  font-family: "Quicksand";
+  font-size: 14px;
+  font-weight: bolder;
+  border: 2px dashed #cebaee;
+  color: #77e6e4;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 //Tablets
-@media screen and (min-width: 40em) and (max-width: 63.9em){
+@media screen and (min-width: 40em) and (max-width: 63.9em) {
   .products--grid {
     .products--grid {
-      display:grid;
+      display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-gap: 15px;
     }
@@ -70,9 +86,9 @@ button {
 }
 
 // Web - desktop
-@media screen and (min-width: 64em){
+@media screen and (min-width: 64em) {
   .products--grid {
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 15px;
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { UpdateProductDTO, CreateProductDTO, Product } from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -11,10 +11,13 @@ import Swal from 'sweetalert2';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss'],
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
   myShoppingCart: Product[] = [];
   total: number = 0;
-  products: Product[] = [];
+
+  @Input() products: Product[] = [];
+  @Output() onLoadMore: EventEmitter<string> = new EventEmitter<string>();
+
   showProductDetail: boolean = false;
   productChosen: Product = {
     id: 0,
@@ -29,22 +32,21 @@ export class ProductsListComponent implements OnInit {
     images: [],
   };
 
-  limit: number = 10;
-  offset: number = 0;
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
-  constructor( private storeServie: StoreService, private productsService: ProductsService )
+
+  constructor( private storeService: StoreService, private productsService: ProductsService )
   {
-    this.myShoppingCart = this.storeServie.getShoppingCart();
+    this.myShoppingCart = this.storeService.getShoppingCart();
   }
 
   ngOnInit(): void {
-    this.loadData();
+
   }
 
   onAddToShoppingCart(product: Product) {
-    this.storeServie.addProduct(product);
-    this.total = this.storeServie.getTotal();
+    this.storeService.addProduct(product);
+    this.total = this.storeService.getTotal();
   }
 
   toggleProductDetail() {
@@ -54,10 +56,12 @@ export class ProductsListComponent implements OnInit {
   onShowDetail(id: number) {
     this.statusDetail = 'loading';
     this.toggleProductDetail();
-    this.productsService.getProduct(id).subscribe((data) => {
+    this.productsService.getProduct(id)
+    .subscribe((data) => {
       this.productChosen = data;
       this.statusDetail = 'success'
-    }, errorMsg => {
+    },
+    errorMsg => {
       this.statusDetail = 'error';
       Swal.fire({
         title: errorMsg,
@@ -68,7 +72,7 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
-  reasAndUpdate(id: number) {
+  readAndUpdate(id: number) {
     this.productsService.getProduct(id)
     .pipe(
       switchMap((product) => this.productsService.update(product.id, {title: 'Change'})),
@@ -126,12 +130,17 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
-  loadData() {
-    this.productsService
-      .getAllProducts(this.limit, this.offset)
-      .subscribe((data) => {
-        this.products = [...this.products, ...data];
-        this.offset += this.limit;
-      });
+  loadMore() {
+    this.onLoadMore.emit();
   }
+
+  // loadData() {
+  //   this.productsService
+  //     .getAllProducts(this.limit, this.offset)
+  //     .subscribe((data) => {
+  //       this.products = [...this.products, ...data];
+  //       this.offset += this.limit;
+  //     });
+  // }
+
 }

@@ -15,12 +15,16 @@ p{
 
 button {
   margin: 6px 2.4em;
-  background-color: #acd9b2;
   border: none;
   border-radius: 20px;
   font-weight: bolder;
   cursor: pointer;
   transition: all ease-out .5s;
+  opacity: 0.4;
+}
+
+button:hover {
+  opacity: 0.6;
 }
 
 img {

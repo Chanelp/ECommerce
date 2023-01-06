@@ -1,0 +1,19 @@
+div {
+  margin-top: 12px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+img {
+  width: 100vw;
+  height: 82vh;
+  object-fit: cover;
+}
+
+body {
+  background-image: url(https://static.platzi.com/media/user_upload/404_not_found-20e4d8fb-2ad6-4b1a-8c84-4925387b8768.jpg);
+}

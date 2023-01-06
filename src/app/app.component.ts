@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Calculator } from './calculator';
-import { Product } from './models/product.model';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +9,8 @@ import { Product } from './models/product.model';
 export class AppComponent {
   showImg = true;
   imgParent = '';
+
+  constructor() {}
 
   toggleImg(){
     this.showImg = !this.showImg;
