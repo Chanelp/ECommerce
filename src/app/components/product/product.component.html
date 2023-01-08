@@ -1,4 +1,6 @@
-<app-summary *ngIf="product.images.length > 0" [img]="product.images[0]" width="200"></app-summary>
+<a [routerLink]="['/product', product.id]">
+  <app-summary *ngIf="product.images.length > 0" [img]="product.images[0]" width="200"></app-summary>
+</a>
 <div class="contentInfo">
   <h2>{{ product.price | currency : "EUR" }}</h2>
   <p>{{ product.title }}</p>

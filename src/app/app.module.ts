@@ -29,6 +29,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ArchivosComponent } from './components/archivos/archivos.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ArchivosComponent } from './components/archivos/archivos.component';
     RecoveryComponent,
     ProfileComponent,
     ArchivosComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,48 @@
+.page-product {
+  padding: 0 3em;
+  .detail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    .gallery {
+      overflow: hidden;
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    h2,
+    h1 {
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 2em;
+    }
+    h2 {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.slideAdd {
+  width: 90%;
+  padding: 1em 0.5em;
+  background-color: white;
+  font-family: "Quicksand";
+  font-weight: bold;
+  border: 3px dashed #c0bbff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all linear 0.7s;
+}
+
+.slideAdd:hover {
+  background-color: #c0bbff;
+}
+
+.arrow-back {
+  color: pink;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
