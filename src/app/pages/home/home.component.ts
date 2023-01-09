@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/app/models/product.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,14 @@ import { Product } from 'src/app/models/product.model';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
+  productId: number | any = 0;
   limit: number = 10;
   offset: number = 0;
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // Hace la primer petición con paginado y renderiza los primeros productos
@@ -26,5 +31,9 @@ export class HomeComponent implements OnInit {
         this.products = [...this.products, ...data];
         this.offset += this.limit;
       });
+
+    this.route.queryParamMap.subscribe((params) => {
+      this.productId = params.get('product');
+    });
   }
 }

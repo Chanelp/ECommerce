@@ -1,5 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { UpdateProductDTO, CreateProductDTO, Product } from 'src/app/models/product.model';
+import {
+  UpdateProductDTO,
+  CreateProductDTO,
+  Product,
+} from 'src/app/models/product.model';
 import { StoreService } from 'src/app/services/store.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { switchMap } from 'rxjs';
@@ -12,13 +16,22 @@ import Swal from 'sweetalert2';
   styleUrls: ['./products-list.component.scss'],
 })
 export class ProductsListComponent {
-  myShoppingCart: Product[] = [];
-  total: number = 0;
+  
+  @Input()
+  set productId(id: number) {
+    if (id) {
+      this.onShowDetail(id);
+    }
+  }
 
   @Input() products: Product[] = [];
   @Output() onLoadMore: EventEmitter<string> = new EventEmitter<string>();
 
+  myShoppingCart: Product[] = [];
+  total: number = 0;
   showProductDetail: boolean = false;
+  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
+
   productChosen: Product = {
     id: 0,
     price: 0,
@@ -32,17 +45,14 @@ export class ProductsListComponent {
     images: [],
   };
 
-  statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
-
-
-  constructor( private storeService: StoreService, private productsService: ProductsService )
-  {
+  constructor(
+    private storeService: StoreService,
+    private productsService: ProductsService
+  ) {
     this.myShoppingCart = this.storeService.getShoppingCart();
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onAddToShoppingCart(product: Product) {
     this.storeService.addProduct(product);
@@ -55,37 +65,47 @@ export class ProductsListComponent {
 
   onShowDetail(id: number) {
     this.statusDetail = 'loading';
-    this.toggleProductDetail();
-    this.productsService.getProduct(id)
-    .subscribe((data) => {
-      this.productChosen = data;
-      this.statusDetail = 'success'
-    },
-    errorMsg => {
-      this.statusDetail = 'error';
-      Swal.fire({
-        title: errorMsg,
-        text: errorMsg,
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      })
-    });
+    // this.toggleProductDetail();
+
+    if (!this.showProductDetail) {
+      this.showProductDetail = true;
+    }
+
+    this.productsService.getProduct(id).subscribe(
+      (data) => {
+        this.productChosen = data;
+        this.statusDetail = 'success';
+      },
+      (errorMsg) => {
+        this.statusDetail = 'error';
+        Swal.fire({
+          title: errorMsg,
+          text: errorMsg,
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
+      }
+    );
   }
 
   readAndUpdate(id: number) {
-    this.productsService.getProduct(id)
-    .pipe(
-      switchMap((product) => this.productsService.update(product.id, {title: 'Change'})),
-    )
-    .subscribe(data => {
-      console.log(data);
-    });
+    this.productsService
+      .getProduct(id)
+      .pipe(
+        switchMap((product) =>
+          this.productsService.update(product.id, { title: 'Change' })
+        )
+      )
+      .subscribe((data) => {
+        console.log(data);
+      });
 
-    this.productsService.fetchReadandUpdate(id, {title: 'Nombre cambió'})
-    .subscribe(response => {
-      const read = response[0];
-      const update = response[1];
-    })
+    this.productsService
+      .fetchReadandUpdate(id, { title: 'Nombre cambió' })
+      .subscribe((response) => {
+        const read = response[0];
+        const update = response[1];
+      });
   }
 
   createNewProduct() {
@@ -142,5 +162,4 @@ export class ProductsListComponent {
   //       this.offset += this.limit;
   //     });
   // }
-
 }
