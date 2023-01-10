@@ -1,4 +1,4 @@
-import { ImageErrorDirective } from './image-error.directive';
+import { ImageErrorDirective } from "./image-error.directive";
 
 describe('ImageErrorDirective', () => {
   it('should create an instance', () => {

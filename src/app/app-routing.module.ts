@@ -1,43 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodoComponent } from './components/todo/todo.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './components/login/login/login.component';
-import { CategoryComponent } from './pages/category/category.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { NotFoundComponent } from './website/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    loadChildren: () => import('./website/website.module').then(m => m.WebsiteModule)
   },
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'category/:id',
-    component: CategoryComponent
-  },
-  {
-    path: 'product/:id',
-    component: ProductDetailComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'todo',
-    component: TodoComponent
+    //Cargar modulos, esto es lo que nos habilita el lazy loading y code splitting
+    path: 'admin',
+    loadChildren: () => import('./cms/cms.module').then(m => m.CmsModule)
   },
   {
     path: '**',
     component: NotFoundComponent
   }
-
 ];
 
 @NgModule({
