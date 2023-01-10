@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit {
     this.usersService.create({
       name: this.register.name,
       email: this.register.email,
-      password: this.register.password,
-      role: 'customer'
+      password: this.register.password
     })
     .subscribe(rta => {
       Swal.fire({
