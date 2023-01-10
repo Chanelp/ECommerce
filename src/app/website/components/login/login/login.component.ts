@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
+import { ExitGuard } from 'src/app/guards/exit.guard';
 
 import Swal from 'sweetalert2';
 

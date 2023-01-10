@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Auth } from '../models/auth.model';
 import { User } from '../models/user.model';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, switchMap, tap, BehaviorSubject } from 'rxjs';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -12,6 +12,8 @@ import { TokenService } from './token.service';
 export class AuthService {
 
   private apiUrl = `${environment.API_URL}/api/auth`;
+  private user = new BehaviorSubject<User | null>(null);
+  user$ = this.user.asObservable();
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
@@ -25,6 +27,9 @@ export class AuthService {
   getProfile() {
     //const headers = new HttpHeaders();
     return this.http.get<User>(`${this.apiUrl}/profile`)
+    .pipe(
+      tap(user => this.user.next(user))
+    )
   }
 
   loginAndGet(email: string, password: string) {
@@ -33,4 +38,14 @@ export class AuthService {
       switchMap(() => this.getProfile())
     )
   }
+
+  logout(){
+    this.tokenService.deleteToken();
+  }
+
+  getAdminRole(){
+    const token = localStorage.getItem('role');
+    return token;
+  }
+
 }

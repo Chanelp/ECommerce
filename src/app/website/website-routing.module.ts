@@ -9,6 +9,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RecoveryComponent } from './pages/recovery/recovery.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { RegisterComponent } from './pages/register/register.component';
+import { ExitGuard } from '../guards/exit.guard';
 
 const routes: Routes = [
   {
@@ -36,8 +38,9 @@ const routes: Routes = [
         component: ProductDetailComponent
       },
       {
-        path: 'login',
-        component: LoginComponent
+        path: 'register',
+        canDeactivate: [ExitGuard],
+        component: RegisterComponent
       },
       {
         path: 'todo',

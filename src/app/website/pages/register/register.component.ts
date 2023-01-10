@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -11,5 +12,20 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  onExit(){
+    const confirm = Swal.fire({
+      title: '¿Seguro de que quieres salir?',
+      showDenyButton: true,
+      confirmButtonText: 'Sí',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        return true;
+      }
+      return false
+    });
+    return confirm
+  }
+
 
 }
